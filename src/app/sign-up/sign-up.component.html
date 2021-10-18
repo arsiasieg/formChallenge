@@ -1,0 +1,44 @@
+<h1>SIGN UP</h1>
+
+<form (ngSubmit)="formulaire.valid && onSubmit()" #formulaire ="ngForm">
+    <div>
+        <label for="firstName">First name : </label>
+        <input name="firstName" type="text" [(ngModel)]="model.firstname" #firstName="ngModel" required minlength="3" maxlength="15">
+    </div>
+    <div *ngIf="formulaire.submitted && firstName.errors">
+        <span *ngIf="firstName.errors?.required">The first name is required.</span>
+        <span *ngIf="firstName.errors?.minlength">The first name must be at least 3 characters long</span>
+        <span *ngIf="firstName.errors?.maxlength">The first name must not exceed 15 characters.</span>
+    </div>
+
+    <div>
+        <label for="lastName">Last name : </label>
+        <input name="lastName" type="text" [(ngModel)]="model.lastname" #lastName="ngModel" required minlength="3" maxlength="15">
+    </div>
+    <div *ngIf="formulaire.submitted && lastName.errors">
+        <span *ngIf="lastName.errors.required">The last name is required.</span>
+        <span *ngIf="firstName.errors?.minlength">The last name must be at least 3 characters long</span>
+        <span *ngIf="firstName.errors?.maxlength">The last name must not exceed 15 characters.</span>
+    </div>
+
+    <div>
+        <label for="password">Password : </label>
+        <input name="password" type="password" [(ngModel)]="model.password" #password="ngModel" required password> 
+    </div>
+    <div *ngIf="formulaire.submitted && password.errors">
+        <span *ngIf="password.errors.required">The password is required.</span>
+        <span *ngIf="password.errors.password">The password isn't valid.</span>
+    </div>
+
+    <div>
+        <label for="mail">Mail : </label>
+        <input name="mail" type="email" [(ngModel)]="model.mail" #mail="ngModel" required email>
+    </div>
+    <div *ngIf="formulaire.submitted && mail.errors">
+        <span *ngIf="mail.errors.required">The mail is required.</span>
+        <span *ngIf="mail.errors.email">The mail is invalid.</span>
+    </div>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+    
+</form>
